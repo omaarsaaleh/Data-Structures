@@ -1,4 +1,4 @@
-#include"SLinkedLists.h"
+#include"SLinkedList.h"
 
 
 template<class T>
