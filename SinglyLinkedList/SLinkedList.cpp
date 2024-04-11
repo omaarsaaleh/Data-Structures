@@ -1,4 +1,4 @@
-#include"SLinkedList.h"
+#include"SLinkedList.hpp"
 
 
 template<class T>
@@ -149,6 +149,7 @@ void SinglyLinkedList<T>::clear(){ // done
         delete temp;
         temp = head;
     }
+    this->head = this-> tail = nullptr ;
     length=0;
 }
 
