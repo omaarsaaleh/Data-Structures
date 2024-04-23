@@ -87,7 +87,9 @@ template <class T>
 void SinglyLinkedList<T>::pop_back(){ // done
     if(this->head== nullptr)   // length==0
         throw std::runtime_error("Cannot pop from an empty list");
-        
+
+    this->length--;
+
     if(this->head==this->tail){ // length == 1
         delete this->tail;
         this->head=this->tail=nullptr;
@@ -101,7 +103,7 @@ void SinglyLinkedList<T>::pop_back(){ // done
     this->tail = beforelastNode;
     beforelastNode->next = nullptr ;
     
-    this->length--;
+    
 
 }
 
@@ -109,7 +111,8 @@ template <class T>
 void SinglyLinkedList<T>::pop_front(){ // done
     if(this->head== nullptr)   // length==0
         throw std::runtime_error("Cannot pop from an empty list");
-        
+    
+    this->length--;    
 
     if(this->head==this->tail){ // length == 1
         delete this->head;
@@ -121,8 +124,6 @@ void SinglyLinkedList<T>::pop_front(){ // done
     head = head->next;
     delete temp;
     
-    this->length--;
-
 }
 
 template<class T>
@@ -250,6 +251,39 @@ void SinglyLinkedList<T>::make_unique() { // time : o(nlogn).  space : o(n)
             node = node->next;
         }
     }
+}
+
+template<class T>
+void SinglyLinkedList<T>::swap(int idx1, int idx2) { 
+    if(idx1<0 || idx1>=length) throw out_of_range("Index out of range");
+    if(idx2<0 || idx2>=length) throw out_of_range("Index out of range");
+    
+    if(idx1==idx2) return ;
+    if(idx1>idx2) std::swap(idx1,idx2);
+
+    Node<T> *node1prev = nullptr, *node1 = head; 
+    Node<T> *node2prev = nullptr, *node2 = head;
+
+    for (int i = 0 ; ; i++){
+        if (node1 && i < idx1){
+            node1prev = node1;
+            node1 = node1->next;
+        }
+        if (node2 && i < idx2){
+            node2prev = node2;
+            node2 = node2->next;
+        }
+        else break;
+    }
+    
+    if (node1==head) head = node2;
+    else node1prev->next = node2; 
+    node2prev->next = node1;
+
+    // if consecutive node 1 = node2prev
+    if(node2==tail) tail = node1;
+    std::swap(node1->next , node2->next );
+
 }
 
 //*********************************************************************************************
