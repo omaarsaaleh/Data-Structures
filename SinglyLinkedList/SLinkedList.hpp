@@ -1,5 +1,5 @@
-#ifndef SINGLY_LINKED_LIST_H
-#define SINGLY_LINKED_LIST_H
+#ifndef SINGLY_LINKED_LIST_HPP
+#define SINGLY_LINKED_LIST_HPP
 
 #include<iostream>
 #include <initializer_list>
@@ -51,6 +51,8 @@ public :
     T& operator[](int index) const; // o(n)
     
     void print() const; // o(n)
+
+    void swap(int idx1, int idx2);
 
     class ConstIterator;
     ConstIterator  cbegin() const { return ConstIterator(this->head); }
