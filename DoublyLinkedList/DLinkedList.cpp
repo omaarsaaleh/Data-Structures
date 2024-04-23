@@ -116,7 +116,9 @@ template <class T>
 void DoublyLinkedList<T>::pop_back(){ // done
     if(this->head== nullptr)   // length==0
         throw std::runtime_error("Cannot pop from an empty list");
-        
+    
+    this->length--;
+
     if(this->head==this->tail){ // length == 1
         delete this->tail;
         this->head=this->tail=nullptr;
@@ -129,8 +131,6 @@ void DoublyLinkedList<T>::pop_back(){ // done
     delete this->tail ;
     this->tail = beforelastNode;
     beforelastNode->next = nullptr ;
-    
-    this->length--;
 
 }
 
@@ -139,7 +139,8 @@ void DoublyLinkedList<T>::pop_front(){ // done
     if(this->head== nullptr)   // length==0
         throw std::runtime_error("Cannot pop from an empty list");
         
-
+    this->length--;
+    
     if(this->head==this->tail){ // length == 1
         delete this->head;
         this->head=this->tail=nullptr;
@@ -150,8 +151,6 @@ void DoublyLinkedList<T>::pop_front(){ // done
     head = head->next;
     head->prev = nullptr;
     delete temp;
-    
-    this->length--;
 
 }
 
@@ -179,6 +178,7 @@ void DoublyLinkedList<T>::clear(){ // done
         delete temp;
         temp = head;
     }
+    this->head = this->tail = nullptr ;
     length=0;
 }
 
