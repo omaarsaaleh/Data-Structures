@@ -5,7 +5,7 @@
 
 template<class T>
 DynamicArray<T>::DynamicArray(int capacity ) {
-    if(capacity < -1)
+    if(capacity <= 0)
         throw invalid_argument("capacity must be positive");
     _capacity = capacity ;
     _size = 0 ;
